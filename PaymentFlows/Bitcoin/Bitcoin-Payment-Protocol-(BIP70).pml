@@ -1,5 +1,5 @@
 @startuml
-!includeurl https://raw.githubusercontent.com/w3c/webpayments/gh-pages/PaymentFlows/skin.ipml
+!includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
 Database "Invoice Database" as DB
 Participant "Payee Website" as Website

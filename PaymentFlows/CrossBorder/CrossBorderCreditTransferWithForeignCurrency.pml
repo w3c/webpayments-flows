@@ -1,5 +1,5 @@
 @startuml
-!includeurl https://raw.githubusercontent.com/w3c/webpayments/gh-pages/PaymentFlows/skin.ipml
+!includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
 title Cross-border credit transfer flows\nInstructed amount is in a currency different\nfrom the Debtor's account currency.
 

@@ -1,5 +1,5 @@
 @startuml
-!includeurl https://raw.githubusercontent.com/w3c/webpayments/gh-pages/PaymentFlows/skin.ipml
+!includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
 title SEPA Direct Debit with e-mandate\n Nominal B2C one-off case\nRef: EPC016-06 Core SDD RB v9.1 Approved
 

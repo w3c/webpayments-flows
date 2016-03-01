@@ -1,5 +1,5 @@
 @startuml
-!includeurl https://raw.githubusercontent.com/w3c/webpayments/gh-pages/PaymentFlows/skin.ipml
+!includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
 title Real Time Payments Service flows\nBased on a distributed architecture service\nSingle currency settlement
 
