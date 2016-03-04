@@ -44,6 +44,8 @@ MPSP-/Payee: Authorisation Result
 
 Payee->UA: Result Page
 
+...
+
 == Payment Processing Continued: Request for Settlement process (could be immediate, batch (e.g. daily) or after some days) ==
 
 Alt
@@ -54,6 +56,8 @@ Else
 End	
 	
 MPSP->CPSP: Capture
+
+...
 
 == Delivery of Product ==
 
