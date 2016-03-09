@@ -13,7 +13,7 @@ participant "Issuing Bank [Issuer]" as CPSP
 
 note over Payee, PSPUI: HTTPS
 
-title Legacy Merchant Hosted Card Payment (Target)
+title Merchant Hosted Card Payment with Payment Credentials Payment Application
 
 == Negotiation of Payment Terms  & Selection of Payment Instrument ==
 

@@ -13,7 +13,7 @@ participant "Issuing Bank [Issuer]" as CPSP
 
 note over Payee, PSPUI: HTTPS
 
-title Legacy Merchant Hosted Card Payment (Target)
+title Merchant Hosted Card Payment with Acquirer/Scheme/Issuer supplier Payment Application (Target)
 
 == Negotiation of Payment Terms  & Selection of Payment Instrument ==
 
@@ -39,10 +39,14 @@ UAM<-[#green]>PSPUI: Invoke <b><color:red>Card</color></b> Payment App (Instrume
 
 UAM->PSPUI: PaymentRequest without Shipping Options
 
+== Authorisation ==
 
-	PSPUI<->CPSP: <b><color:red>Authorisation</color></b> 
+Note over UAM: Authorisation can be complex and include stronger authentication such as 3DS or alternatives as prescribed by PSD2
+	PSPUI-\MPSP: Authorise (payload)
+	MPSP<->CPSP: Authorisation Request/Response
+	MPSP-/PSPUI: Authorisation Result	
 	
-	PSPUI<->UAM: <b><color:red>Payment Token</color></b>
+	PSPUI->UAM: <b><color:red>Payment Token</color></b>
 
 UAM->UA: <b><color:red>Payment Token</color></b>
 
