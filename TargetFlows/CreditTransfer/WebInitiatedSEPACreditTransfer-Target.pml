@@ -6,26 +6,47 @@ Participant "Payment Processor [Intermediary]" as MPSP
 Participant "Payee (Merchant) Website [Creditor]" as Payee
 participant "Payer's (Shopper's) Browser" as UA
 Actor "Payer [Debtor]" as Payer
+participant "Payment Mediator" as UAM
+participant "Payment App" as PSPUI
 participant "Payer (Shopper) Bank [Debtor Agent]" as CB
 
 
-note over MPSP, Payer: HTTPS
+note over Payee, PSPUI: HTTPS
 
-title PSP Mediated (SEPA) Credit Transfer (Current)
+title PSP Mediated (SEPA) Credit Transfer
 
-== Establish Payment Obligation ==
+== Negotiation of Payment Terms & Selection of Payment Instrument ==
 
 Payee->UA: Present Check-out page
 Payer<-[#green]>UA: Select Checkout
-UA->MPSP: Request Payment Choice Pay
+Payer<-[#green]>Payee: Establish Payment Obligation (including delivery obligations)
+Payee->UA: Payment and delivery details
 
-MPSP->UA: Payment Method Choice Page
-Payer<-[#green]>UA:  Choose Credit Transfer Payment Method
-UA->MPSP: Request Credit Transfer Payment Information
-MPSP->UA: Provide Credit Transfer Details (e.g. IBAN)
-note right: These details are needed by the Payer to manually invoke the Credit Transfer out-of-band
-Payer<-[#green]>UA: Agree to Payment
-UA->MPSP: Payment Obligation Accepted
+UA->UAM: PaymentRequest (Items, Amounts, Shipping Options, <b><color:red>Credit Transfer IBAN</color></b> )
+note right: PaymentRequest.Show()
+opt
+	Payer<-[#green]>UAM: Select Shipping Options	
+	UAM->UA: Shipping Info
+	note right: shippingoptionchange or shippingaddresschange events
+
+	UA->UAM: Revised PaymentRequest
+end
+Payer<-[#green]>UAM: Select <b><color:red>Credit Transfer</color></b> Payment Instrument
+
+UAM<-[#green]>PSPUI: Invoke Payment App (Instrument)
+
+note right: IBAN details displayed on screen with details about how to make payment, potential printed details
+
+Payer<-[#green]>PSPUI: Authorise
+
+PSPUI->UAM: Payment App Response
+
+UAM->UA: Payment App Response
+
+Note Right: Show() Promise Resolves 
+
+UA->MPSP: Payment App Response
+
 MPSP->UA: Result Screen "Pending Transfer"
 
 MPSP-[#black]>Payee: Payment Notification (Pending)
