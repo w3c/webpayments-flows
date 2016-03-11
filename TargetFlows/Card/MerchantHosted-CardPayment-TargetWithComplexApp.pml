@@ -33,11 +33,11 @@ opt
 end
 Payer<-[#green]>UAM: Select <b><color:red>Card</color></b> Payment Instrument
 
-Payer<-[#green]>UAM: Authorise
-
 UAM<-[#green]>PSPUI: Invoke <b><color:red>Card</color></b> Payment App (Instrument)
 
 UAM->PSPUI: PaymentRequest without Shipping Options
+
+Payer<-[#green]>PSPUI: Authorise
 
 == Authorisation ==
 

@@ -1,7 +1,7 @@
 @startuml
 !includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
-participant "Payment Processor" as MPSP
+participant "Payment Processor [Intermediary]" as MPSP
 Participant "Payee (Merchant) Website" as Payee
 participant "Payer's (Shopper's) Browser" as UA
 Actor "Payer" as Payer
@@ -13,7 +13,7 @@ note over Payee, PSPUI: HTTPS
 
 title Generic Payment Request API Flow V1
 
-== Negotiation of Payment Terms  & Selection of Payment Instrument ==
+== Negotiation of Payment Terms & Selection of Payment Instrument ==
 
 Payee->UA: Present Check-out page 
 Payer<-[#green]>UA: Select Checkout
@@ -31,18 +31,14 @@ opt
 end
 Payer<-[#green]>UAM: Select Payment Instrument
 
-Payer<-[#green]>UAM: Authorise
-
 UAM<-[#green]>PSPUI: Invoke Payment App (Instrument)
 
 UAM->PSPUI: PaymentRequest without Shipping Options
 
+Payer<-[#green]>PSPUI: Authorise
+
 opt
 	PSPUI<->CPSP: Method specific processing (e.g. Authorise Payment / Tokenise Payment Instrument)
-
-	opt
-		PSPUI<->UAM: UI Challenge/Response
-	end
 end
 
 PSPUI->UAM: Payment App Response
