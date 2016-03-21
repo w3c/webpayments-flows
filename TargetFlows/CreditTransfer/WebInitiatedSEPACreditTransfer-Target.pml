@@ -23,11 +23,11 @@ Payer<-[#green]>Payee: Establish Payment Obligation (including delivery obligati
 Payee->UA: Payment and delivery details
 
 UA->UAM: PaymentRequest (Items, Amounts, Shipping Options, <b><color:red>Credit Transfer IBAN</color></b> )
-note right: PaymentRequest.Show()
+note right #aqua: PaymentRequest.Show()
 opt
 	Payer<-[#green]>UAM: Select Shipping Options	
 	UAM->UA: Shipping Info
-	note right: shippingoptionchange or shippingaddresschange events
+	note right #aqua: shippingoptionchange or shippingaddresschange events
 
 	UA->UAM: Revised PaymentRequest
 end
@@ -43,13 +43,28 @@ PSPUI->UAM: Payment App Response
 
 UAM->UA: Payment App Response
 
-Note Right: Show() Promise Resolves 
+Note Right #aqua: Show() Promise Resolves 
 
 UA->MPSP: Payment App Response
 
-MPSP->UA: Result Screen "Pending Transfer"
+MPSP->UA: Received
+
+== Notification ==
+
+UA->UAM: Payment Completetion Status
+
+note over UAM #aqua: response.complete(status)
+
+UAM->UA: UI Removed
+
+note over UAM #aqua: complete promise resolves
+
+UA->UA: Navigate to Result Page
 
 MPSP-[#black]>Payee: Payment Notification (Pending)
+
+
+
 
 Note over Payer: Payer now must invoke Credit Transfer manually via some means, e.g. Phone, WebBanking etc. (automated invocation will become possible as part of PSD 2 implementation)
 

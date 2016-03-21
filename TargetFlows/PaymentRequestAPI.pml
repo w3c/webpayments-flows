@@ -21,11 +21,11 @@ Payer<-[#green]>Payee: Establish Payment Obligation (including delivery obligati
 Payee->UA: Payment and delivery details
 
 UA->UAM: PaymentRequest (Items, Amounts, Shipping Options )
-note right: PaymentRequest.Show()
+note right #aqua: PaymentRequest.Show() 
 opt
 	Payer<-[#green]>UAM: Select Shipping Options	
 	UAM->UA: Shipping Info
-	note right: shippingoptionchange or shippingaddresschange events
+	note right #aqua: shippingoptionchange or shippingaddresschange events
 
 	UA->UAM: Revised PaymentRequest
 end
@@ -46,7 +46,7 @@ PSPUI->UAM: Payment App Response
 
 UAM->UA: Payment App Response
 
-Note Right: Show() Promise Resolves 
+Note Right #aqua: Show() Promise Resolves 
 
 == Payment Processing ==
 
@@ -63,11 +63,11 @@ end
 
 UA->UAM: Payment Completetion Status
 
-note over UAM: response.complete(status)
+note over UAM #aqua: response.complete(status)
 
 UAM->UA: UI Removed
 
-note over UAM: complete promise resolves
+note over UAM #aqua: complete promise resolves
 
 UA->UA: Navigate to Result Page
 
