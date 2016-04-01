@@ -22,7 +22,7 @@ end title
 Payee->UA: Present Check-out page 
 Payer<-[#green]>UA: Select Checkout with Card
 Payer<-[#green]>UA: Select Card Brand
-Payer<-[#green]>UA: Payer Fills Form (PAN, Expiry, [CVV], [Billing Address])
+Payer<-[#green]>UA: Payer Fills Form (PAN, Expiry, [CSC], [Billing Address])
 Note right: May be auto-filled from browser 
 
 
@@ -33,7 +33,7 @@ Note right: Custom code on merchant webpage can encrypt payload to reduce PCI bu
 
 opt
 	Payee->Payee: Store Card
-	note right: Merchant can store card details apart from CVV (even if encrypted) for future use (a.k.a. Card on File)
+	note right: Merchant can store card details apart from CSC (even if encrypted) for future use (a.k.a. Card on File)
 end
 
 Payee-\MPSP: Authorise

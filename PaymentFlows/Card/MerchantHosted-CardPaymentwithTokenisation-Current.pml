@@ -20,7 +20,7 @@ Payer->Payer: Select Card Payment Method
 
 Payer->Payer: Select Card Brand
 alt
-	UA->Payer: Form Fill; PAN, Expiry Date, [CVV], [AVS]
+	UA->Payer: Form Fill; PAN, Expiry Date, [CSC], [AVS]
 else
 	Payer->Payer: User Fills Form
 End
