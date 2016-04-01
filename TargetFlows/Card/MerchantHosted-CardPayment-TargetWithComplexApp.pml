@@ -1,7 +1,7 @@
 @startuml
 !includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
-Participant "Payee (Merchant) PSP [Acquirer]" as MPSP
+Participant "Processor [Acquirer]" as MPSP
 Participant "Payee (Merchant) [Acceptor] Website" as Payee
 participant "Payer's (Shopper's) Browser" as UA
 Actor "Payer [Cardholder]" as Payer
@@ -33,9 +33,9 @@ opt
 end
 Payer<-[#green]>UAM: Select <b><color:red>Card</color></b> Payment Instrument
 
-UAM<-[#green]>PSPUI: Invoke <b><color:red>Card</color></b> Payment App (Instrument)
+UAM<-[#green]>PSPUI: Invoke <b><color:red>Card</color></b> Payment App
 
-UAM->PSPUI: PaymentRequest without Shipping Options
+UAM->PSPUI: PaymentRequest (- Options)
 
 Payer<-[#green]>PSPUI: Authorise
 
@@ -82,7 +82,7 @@ Alt
 	Payee -> MPSP : Capture
 	note right: Later Capture may be called, for example after good shipped or tickets pickedup
 Else
-	MPSP -> MPSP : Auto Capture in batch processing at end-of-day
+	MPSP -> MPSP : Auto Capture in batch
 End	
 	
 MPSP->CPSP: Capture
