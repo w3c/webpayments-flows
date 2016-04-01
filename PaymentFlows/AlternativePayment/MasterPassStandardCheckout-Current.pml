@@ -48,12 +48,12 @@ MP-->Payee: Card Number & Shipping Address
 == MasterPass specific flow ends ==
 
 group opt
-  Payee->Payer: Capture CVV
-  Payer->Payee: CVV input
+  Payee->Payer: Capture CSC
+  Payer->Payee: CSC input
 end group
 
 Payee->Payer: Display order summary
-Payee->PSP: Submit Card Not Present Transaction with Card, CVV &\nAddress (if required)
+Payee->PSP: Submit Card Not Present Transaction with Card, CSC &\nAddress (if required)
 PSP-->Payee: Payment confirmation
 Payee->Payer: Display confirmation page
 

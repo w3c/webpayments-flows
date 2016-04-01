@@ -1,8 +1,8 @@
 @startuml
 !includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
-participant "Payment Processor [Intermediary]" as MPSP
-Participant "Payee (Merchant) Website" as Payee
+participant "Payment Processor" as MPSP
+Participant "Payee Website" as Payee
 participant "Payer's (Shopper's) Browser" as UA
 Actor "Payer" as Payer
 participant "Payment Mediator" as UAM
@@ -15,10 +15,10 @@ title Generic Payment Request API Flow V1
 
 == Negotiation of Payment Terms & Selection of Payment Instrument ==
 
-Payee->UA: Present Check-out page 
+Payee->UA: Present Checkout page 
 Payer<-[#green]>UA: Select Checkout
-Payer<-[#green]>Payee: Establish Payment Obligation (including delivery obligations)
-Payee->UA: Payment and delivery details
+Payer<-[#green]>Payee: Establish Payment Obligation (including delivery)
+Payee->UA: Payment & delivery details
 
 UA->UAM: PaymentRequest (Items, Amounts, Shipping Options )
 note right #aqua: PaymentRequest.Show() 
@@ -31,14 +31,18 @@ opt
 end
 Payer<-[#green]>UAM: Select Payment Instrument
 
-UAM<-[#green]>PSPUI: Invoke Payment App (Instrument)
+UAM<-[#green]>PSPUI: Invoke Payment App
 
-UAM->PSPUI: PaymentRequest without Shipping Options
+UAM->PSPUI: PaymentRequest (- Options)
 
 Payer<-[#green]>PSPUI: Authorise
 
-opt
-	PSPUI<->CPSP: Method specific processing (e.g. Authorise Payment / Tokenise Payment Instrument)
+Group Method specific processing
+	PSPUI<->CPSP: interaction(s)
+		note left
+		(e.g. Authorise Payment
+		/ Tokenise Payment Instrument)
+		end note
 end
 
 PSPUI->UAM: Payment App Response

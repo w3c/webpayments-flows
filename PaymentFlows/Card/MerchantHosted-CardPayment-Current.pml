@@ -16,7 +16,7 @@ title Legacy Merchant Hosted Card Payment (Current)
 Payee->UA: Present Check-out page 
 Payer<-[#green]>UA: Select Checkout with Card
 Payer<-[#green]>UA: Select Card Brand
-Payer<-[#green]>UA: Payer Fills Form (PAN, Expiry, [Issue Number | Start Date], [CVV], [Billing Address])
+Payer<-[#green]>UA: Payer Fills Form (PAN, Expiry, [Issue Number | Start Date], [CSC], [Billing Address])
 Note right: May be auto-filled from browser 
 
 == Payment Processing ==
@@ -30,7 +30,7 @@ End
 
 opt
 	Payee->Payee: Store Card
-	note right: Merchant can store card details (apart from CVV) (even if encrypted) for future use (a.k.a. Card on File)
+	note right: Merchant can store card details (apart from /webpayments-flows/) (even if encrypted) for future use (a.k.a. Card on File)
 end
 
 Payee-\MPSP: Authorise (payload)

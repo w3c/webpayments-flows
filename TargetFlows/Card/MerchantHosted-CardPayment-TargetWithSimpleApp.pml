@@ -39,9 +39,9 @@ UAM->PSPUI: PaymentRequest without Shipping Options
 
 Payer<-[#green]>PSPUI: Authorise
 
-PSPUI->UAM: <b><color:red>Card Details (e.g. PAN, Expiry, CVV)</color></b>
+PSPUI->UAM: <b><color:red>Card Details (PAN, Name, Expiry, [CSC], [BillingAddress])</color></b>
 
-UAM->UA: <b><color:red>Card Details (e.g. PAN, Expiry, CVV)</color></b>
+UAM->UA: <b><color:red>Card Details</color></b>
 
 Note Right #aqua: Show() Promise Resolves 
 
@@ -59,7 +59,7 @@ End
 
 opt
 	Payee->Payee: Store Card
-	note right: Merchant can store card details (apart from CVV) (even if encrypted) for future use (a.k.a. Card on File)
+	note right: Merchant can store card details (apart from CSC) (even if encrypted) for future use (a.k.a. Card on File)
 end
 
 Payee-\MPSP: Authorise (payload)

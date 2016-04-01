@@ -23,7 +23,7 @@ MPSP->Payer: Payment Method Choice Page
 Payer->Payer: Select Card Payment Method
 
 alt
-	UA->Payer: Form Fill; PAN, Expiry Date, [CVV], [AVS]
+	UA->Payer: Form Fill; PAN, Expiry Date, [CSC], [AVS]
 else
 	Payer->Payer: User Fills Form
 End
