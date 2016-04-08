@@ -1,7 +1,7 @@
 @startuml
 !includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
-participant "Payment Processor" as MPSP
+participant "Processor [Intermediary]" as MPSP
 Participant "Payee Website" as Payee
 participant "Payer's (Shopper's) Browser" as UA
 Actor "Payer" as Payer
