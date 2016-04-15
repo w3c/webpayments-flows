@@ -29,7 +29,8 @@ opt
 
 	UA->UAM: Revised PaymentRequest
 end
-Payer<-[#green]>UAM: Select Payment Instrument
+
+Payer<-[#green]>UAM: Select Payment App/Instrument
 
 UAM<-[#green]>PSPUI: Invoke Payment App
 
