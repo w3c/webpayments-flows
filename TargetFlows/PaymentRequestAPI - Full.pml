@@ -1,6 +1,7 @@
 @startuml
 !includeurl https://raw.githubusercontent.com/w3c/webpayments-flows/gh-pages/PaymentFlows/skin.ipml
 
+participant "Processor [Intermediary]" as MPSP
 Participant "Payee Website" as Payee
 participant "Payer's (Shopper's) Browser" as UA
 Actor "Payer" as Payer
@@ -14,6 +15,8 @@ title Generic Payment Request API Flow V1
 
 == Negotiation of Payment Terms & Selection of Payment Instrument ==
 
+Payee->UA: Present Checkout page 
+Payer<-[#green]>UA: Select Checkout
 Payer<-[#green]>Payee: Establish Payment Obligation (including delivery)
 Payee->UA: Payment & delivery details
 
@@ -55,8 +58,10 @@ Note Right #aqua: Show() Promise Resolves
 UA-\Payee: Payment App Response
 
 opt
-	Payee-\CPSP: Finalise Payment
-	CPSP-/Payee: Payment Response
+	Payee-\MPSP: Finalise Payment
+	MPSP-\CPSP: Finalise Payment
+	CPSP-/MPSP: Payment Response
+	MPSP-/Payee: Payment Response
 end
 	
 == Notification ==
@@ -71,8 +76,18 @@ note over UAM #aqua: complete promise resolves
 
 UA->UA: Navigate to Result Page
 
+== Payment Processing Continued ==
+
+opt
+	Payee-\MPSP: Finalise Payment
+	MPSP-\CPSP: Finalise Payment
+	CPSP-/MPSP: Payment Response
+	MPSP-/Payee: Payment Response
+end
+	
+
 == Delivery of Product ==
 
-Payee->Payer: Meet any service obligation established in step 1
+Payee->Payer: Provide products or services
 
 @enduml
